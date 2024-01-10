@@ -6,8 +6,8 @@ class EntradaDigital {
    public:
     EntradaDigital(int pin);
     int read();
-   private:
-    int pin;
+   protected:
+    const int pin;
 };
 
 #endif

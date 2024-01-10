@@ -1,7 +1,6 @@
 #include "EntradaDigital.h"
 
-EntradaDigital::EntradaDigital(int pin) {
-    this->pin = pin;
+EntradaDigital::EntradaDigital(int _pin) : pin(_pin) {
     pinMode(pin, INPUT);
 }
 

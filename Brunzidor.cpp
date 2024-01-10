@@ -1,10 +1,7 @@
-#include "Arduino.h”
+#include "Arduino.h"
 #include "Brunzidor.h"
 
-Brunzidor::Brunzidor(int pin) {
-    pinMode(pin, OUTPUT);
-
-    this->pin = pin;
+void Brunzidor::tone(unsigned int freq, unsigned long t) {
+    // operador :: per agafar l'scope global
+    ::tone(this->pin, freq, t);
 }
-
-void Brunzidor::sonar(int f) { tone(this->pin, f, this->t); }

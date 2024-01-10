@@ -1,8 +1,7 @@
 #include "SortidaDigital.h"
 #include "Arduino.h"
 
-SortidaDigital::SortidaDigital(int pin) {
-    this->pin = pin;
+SortidaDigital::SortidaDigital(int _pin) : pin(_pin) {
     pinMode(pin, OUTPUT);
 }
 

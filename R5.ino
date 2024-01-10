@@ -1,6 +1,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 #include <stdlib.h>
+#include <Arduino.h>
 
 const int verm = 51,
   verd = 50,

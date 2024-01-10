@@ -13,5 +13,5 @@ class Ultrasons {
     int pinEcho;
     int rangs[3];
 
-}
+};
 #endif

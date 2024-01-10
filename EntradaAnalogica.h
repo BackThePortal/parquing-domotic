@@ -7,9 +7,9 @@ class EntradaAnalogica {
     EntradaAnalogica(int pin);
     int read();
 
-    static int map(int valor, int min, int max);
-   private:
-    int pin;
+    // static int map(int valor, int min, int max);
+   protected:
+    const int pin;
 };
 
 #endif

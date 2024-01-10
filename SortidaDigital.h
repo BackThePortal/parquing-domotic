@@ -29,8 +29,8 @@ class SortidaDigital {
 
     int estat;
     
-   private:
-    int pin;
+   protected:
+    const int pin;
 
-}
+};
 #endif
