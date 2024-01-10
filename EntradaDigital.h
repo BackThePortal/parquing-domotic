@@ -6,6 +6,11 @@ class EntradaDigital {
    public:
     EntradaDigital(int pin);
     int read();
+    /*
+    Equivalent a la funció integrada corresponent amb un
+    interval de 10 microsegons.
+    */
+    unsigned long pulseIn();
    protected:
     const int pin;
 };

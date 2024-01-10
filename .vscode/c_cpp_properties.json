@@ -15,7 +15,8 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "USBCON"
+                "USBCON",
+                "Arduino"
             ],
             "forcedInclude": [],
             "cStandard": "c17",

@@ -2,7 +2,7 @@
 #define Brunzidor_h
 
 #include <Arduino.h>
-#include <SortidaAnalogica.h>
+#include "SortidaAnalogica.h"
 
 class Brunzidor : SortidaAnalogica {
    public:

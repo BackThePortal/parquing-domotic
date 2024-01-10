@@ -4,28 +4,30 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#include "SortidaDigital.h"
 #include "Brunzidor.h"
+#include "SortidaDigital.h"
 
-class Barrera : Servo {
+class Barrera : private Servo {
    private:
     static const int angleClosed = 125;
     static const int angleOpen = 20;
     const int pin;
+
+    unsigned long t = 0;
+
     SortidaDigital* lightClosed;
     SortidaDigital* lightOpen;
-
-    void set(int angle);
+    Brunzidor* buzzer;
 
    public:
-    // Utilitzar constructor de classe pare
-    using Servo::Servo;
-    Barrera(int pin, SortidaDigital* ptrLightClosed, SortidaDigital* ptrLightOpen, Brunzidor* ptrBuzzer);
+    Barrera(int _pin, SortidaDigital* ptrLightClosed,
+            SortidaDigital* ptrLightOpen, Brunzidor* ptrBuzzer);
 
     void open();
     void open(unsigned long t);
     void close();
     void close(unsigned long t);
+    bool checkTime();
 
     bool isOpen;
 };

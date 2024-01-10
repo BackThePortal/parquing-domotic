@@ -1,17 +1,26 @@
-#ifndef Brunzidor_h
-#define Brunzidor_h
+#ifndef Ultrasons_h
+#define Ultrasons_h
 
 #include <Arduino.h>
+#include "SortidaAnalogica.h"
+#include "SortidaDigital.h"
+#include "EntradaDigital.h"
 
 class Ultrasons {
    public:
-    Ultrasons(int pinTrig, int pinEcho);
-    unsigned long polsar();
+    Ultrasons(int pinTrig, int pinEcho, SortidaAnalogica* ptrBlue1, SortidaAnalogica* ptrBlue2);
+    
+    bool isClose();
 
    private:
-    int pinTrig;
-    int pinEcho;
-    int rangs[3];
+    SortidaDigital* trig;
+    EntradaDigital* echo;
+    SortidaAnalogica* blue1;
+    SortidaAnalogica* blue2;
+
+    const int lightRanges[3] = {5, 15, 50};
+
+    int dist();
 
 };
 #endif

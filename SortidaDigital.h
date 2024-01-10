@@ -27,6 +27,11 @@ class SortidaDigital {
     */
     void set(int estat, unsigned long t);
 
+    /*
+    Interval de 10 microsegons.
+    */
+    void pulseOut();
+
     int estat;
     
    protected:

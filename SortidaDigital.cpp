@@ -31,3 +31,9 @@ void SortidaDigital::set(int estat, unsigned long t) {
     delay(t);
     this->set(!estat);
 }
+
+void SortidaDigital::pulseOut() {
+    this->on();
+    delayMicroseconds(10);
+    this->off();
+}

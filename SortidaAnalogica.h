@@ -1,5 +1,5 @@
-#ifndef Motor_h
-#define Motor_h
+#ifndef SortidaAnalogica_h
+#define SortidaAnalogica_h
 
 #include <Arduino.h>
 

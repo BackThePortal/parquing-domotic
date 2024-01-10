@@ -1,10 +1,7 @@
 #include "EntradaDigital.h"
 
-EntradaDigital::EntradaDigital(int _pin) : pin(_pin) {
-    pinMode(pin, INPUT);
-}
+EntradaDigital::EntradaDigital(int _pin) : pin(_pin) { pinMode(pin, INPUT); }
 
-int EntradaDigital::read() {
-    return digitalRead(this->pin);
-}
+int EntradaDigital::read() { return digitalRead(this->pin); }
 
+unsigned long EntradaDigital::pulseIn() { return ::pulseIn(this->pin, HIGH); }
