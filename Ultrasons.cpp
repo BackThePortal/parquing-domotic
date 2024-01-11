@@ -1,5 +1,4 @@
 #include "Ultrasons.h"
-
 #include "Arduino.h"
 
 Ultrasons::Ultrasons(int pinTrig, int pinEcho, SortidaAnalogica* ptrBlue1,
@@ -7,6 +6,11 @@ Ultrasons::Ultrasons(int pinTrig, int pinEcho, SortidaAnalogica* ptrBlue1,
     : blue1(ptrBlue1), blue2(ptrBlue2) {
     this->trig = new SortidaDigital(pinTrig);
     this->echo = new EntradaDigital(pinEcho);
+}
+
+void Ultrasons::begin() {
+    this->trig->begin();
+    this->echo->begin();
 }
 
 int Ultrasons::dist() {

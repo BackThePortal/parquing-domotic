@@ -5,6 +5,7 @@
 class EntradaAnalogica {
    public:
     EntradaAnalogica(int pin);
+    void begin();
     int read();
 
     // static int map(int valor, int min, int max);

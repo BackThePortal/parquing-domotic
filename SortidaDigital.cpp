@@ -2,6 +2,9 @@
 #include "Arduino.h"
 
 SortidaDigital::SortidaDigital(int _pin) : pin(_pin) {
+}
+
+void SortidaDigital::begin() {
     pinMode(pin, OUTPUT);
 }
 

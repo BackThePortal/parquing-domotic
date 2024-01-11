@@ -9,6 +9,7 @@
 class Ultrasons {
    public:
     Ultrasons(int pinTrig, int pinEcho, SortidaAnalogica* ptrBlue1, SortidaAnalogica* ptrBlue2);
+    void begin();
     
     bool isClose();
 

@@ -8,7 +8,11 @@ Barrera::Barrera(int _pin, SortidaDigital* ptrLightClosed,
       lightClosed(ptrLightClosed),
       lightOpen(ptrLightOpen),
       buzzer(ptrBuzzer) {
-    this->attach(this->pin);
+   
+}
+
+void Barrera::begin() {
+ this->attach(this->pin);
     this->close();
 }
 

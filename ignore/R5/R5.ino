@@ -50,7 +50,7 @@ void setup() {
   lcd.init();
   lcd.backlight();
 
-  lcd.print("Benvinguts");
+  lcd.print("Benvingut");
 
   servoMotor.attach(13);
   
@@ -63,6 +63,7 @@ void setup() {
 
 void loop() {
   int sortida = digitalRead(botoSortida);
+  int entrada = false;
   
 
   // Enviar pulsació

@@ -9,6 +9,7 @@ class Comandament {
 
    public:
     Comandament(int _pin);
+    void begin();
     int check();
 };
 

@@ -6,6 +6,7 @@
 class SortidaDigital {
    public:
     SortidaDigital(int pin);
+    void begin();
     void on();
     void off();
     /*

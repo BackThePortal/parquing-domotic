@@ -9,6 +9,7 @@ class SortidaAnalogica {
 
    public:
     SortidaAnalogica(int pin);
+    void begin();
     void set(int valor);
     void set(int valor, int min, int max);
 

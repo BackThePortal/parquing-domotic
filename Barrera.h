@@ -23,6 +23,8 @@ class Barrera : private Servo {
     Barrera(int _pin, SortidaDigital* ptrLightClosed,
             SortidaDigital* ptrLightOpen, Brunzidor* ptrBuzzer);
 
+    void begin();
+
     void open();
     void open(unsigned long t);
     void close();

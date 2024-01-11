@@ -1,6 +1,12 @@
 #include "EntradaDigital.h"
+#include "Arduino.h"
 
-EntradaDigital::EntradaDigital(int _pin) : pin(_pin) { pinMode(pin, INPUT); }
+
+EntradaDigital::EntradaDigital(int _pin) : pin(_pin) { }
+
+void EntradaDigital::begin() {
+    pinMode(pin, INPUT);
+}
 
 int EntradaDigital::read() { return digitalRead(this->pin); }
 

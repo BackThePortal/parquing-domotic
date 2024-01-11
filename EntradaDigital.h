@@ -5,6 +5,7 @@
 class EntradaDigital {
    public:
     EntradaDigital(int pin);
+    void begin();
     int read();
     /*
     Equivalent a la funció integrada corresponent amb un

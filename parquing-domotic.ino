@@ -1,4 +1,3 @@
-#include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
 #include "Barrera.h"
@@ -31,8 +30,24 @@ Comandament comandament(28);
 unsigned int places = 3;
 
 void setup() {
+    vermell.begin();
+    verd.begin();
+
+    blau1.begin();
+    blau2.begin();
+
+    botoEntrada.begin();
+    botoSortida.begin();
+    
+    brunzidor.begin();
+    ultrasons.begin();
+    barrera.begin();
+
+    lcd.begin();
+
     Serial.begin(9600);
-    lcd.update("Benvinguts", "Places: " + String(places));
+
+    lcd.update("Benvinguts", "Place: " + String(places));
 }
 
 void loop() {

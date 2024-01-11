@@ -3,6 +3,10 @@
 
 EntradaAnalogica::EntradaAnalogica(int _pin) : pin(_pin) {}
 
+void EntradaAnalogica::begin() {
+    pinMode(this->pin, INPUT);
+}
+
 int EntradaAnalogica::read() { return 0; }
 
 // Preprocessar un valor

@@ -7,6 +7,7 @@
 class Brunzidor : SortidaAnalogica {
    public:
     using SortidaAnalogica::SortidaAnalogica;
+    using SortidaAnalogica::begin;
     void tone(unsigned int freq, unsigned long t);
 };
 #endif
