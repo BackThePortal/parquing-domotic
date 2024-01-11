@@ -2,11 +2,11 @@
 
 #include "Barrera.h"
 #include "Brunzidor.h"
+#include "Comandament.h"
 #include "EntradaDigital.h"
 #include "Pantalla.h"
 #include "SortidaDigital.h"
 #include "Ultrasons.h"
-#include "Comandament.h"
 
 SortidaDigital vermell(51);
 SortidaDigital verd(50);
@@ -38,7 +38,7 @@ void setup() {
 
     botoEntrada.begin();
     botoSortida.begin();
-    
+
     brunzidor.begin();
     ultrasons.begin();
     barrera.begin();
@@ -47,18 +47,23 @@ void setup() {
 
     Serial.begin(9600);
 
-    lcd.update("Benvinguts", "Place: " + String(places));
+    lcd.update("Benvinguts", "Places: " + String(places));
 }
 
 void loop() {
-    int sortida = botoSortida.read();
-    int entrada = botoEntrada.read() || ultrasons.isClose();
+    Actions button = comandament.read();
 
-    comandament.check();
+    int sortida = botoSortida.read() || button == EXIT;
+    int entrada = botoEntrada.read() || ultrasons.isClose() || button == ENTER;
 
-    // XOR
     if ((sortida != entrada) && !barrera.isOpen) {
-        if (sortida || places > 1) {
+        // Algun botó premut o distància propera
+
+        if (entrada && places == 0) {
+            // Entrada demanada, no hi ha places
+            lcd.update("Parking ple", "No pots passar", 1500);
+            brunzidor.tone(200, 400);
+        } else {
             barrera.open();
 
             if (sortida) {
@@ -68,18 +73,17 @@ void loop() {
             } else {
                 lcd.update("Benvinguts", "");
 
-                if (places > 0) {
-                    --places;
-                }
+                --places;
             }
-        } else {
-            lcd.update("Parking ple", "");
         }
     } else {
     }
 
-    if (barrera.checkTime()) {
-        lcd.update("Benvinguts", "Places: " + String(places));
+    // | sol per forçar evaluació d'ambdues expressions
+    // amb || es curtcircuiten
+    if (barrera.checkTime() | lcd.checkTime()) {
+        lcd.update("Benvinguts",
+                   places == 0 ? "Parking ple" : "Places: " + String(places));
     }
     delay(50);
 }

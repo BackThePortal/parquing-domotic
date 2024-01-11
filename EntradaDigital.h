@@ -7,6 +7,7 @@ class EntradaDigital {
     EntradaDigital(int pin);
     void begin();
     int read();
+    
     /*
     Equivalent a la funció integrada corresponent amb un
     interval de 10 microsegons.
