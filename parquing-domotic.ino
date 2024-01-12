@@ -4,9 +4,12 @@
 #include "Brunzidor.h"
 #include "Comandament.h"
 #include "EntradaDigital.h"
+#include "Lector.h"
 #include "Pantalla.h"
 #include "SortidaDigital.h"
 #include "Ultrasons.h"
+
+#define MAX_STRING_SIZE 100
 
 SortidaDigital vermell(51);
 SortidaDigital verd(50);
@@ -27,7 +30,16 @@ Pantalla lcd;
 
 Comandament comandament(28);
 
+Lector lector(0, 0);
+
 unsigned int places = 3;
+
+unsigned long targetaCooldown = 0;
+
+void pantallaIdle() {
+    lcd.update("Benvinguts",
+               places == 0 ? "Parking ple" : "Places: " + String(places));
+}
 
 void setup() {
     vermell.begin();
@@ -46,15 +58,50 @@ void setup() {
     lcd.begin();
 
     Serial.begin(9600);
+    while (!Serial)
+        ;
 
-    lcd.update("Benvinguts", "Places: " + String(places));
+    lector.begin();
 }
 
 void loop() {
-    Actions button = comandament.read();
+    Actions action = comandament.read();
 
-    int sortida = botoSortida.read() || button == EXIT;
-    int entrada = botoEntrada.read() || ultrasons.isClose() || button == ENTER;
+    if (Comandament::isUserAction(action)) {
+        int user = Comandament::getUserIndex(action);
+        lcd.update("Usuari " + String(user), "Passa targeta");
+
+        lector.detectWait();
+
+        if (lector.write("user", String(user))) {
+            lcd.update("Usuari " + String(user), "Registrat");
+        } else {
+            lcd.update("Usuari " + String(user), "Error");
+        }
+        return;
+    }
+
+    bool ambTargeta =
+        (targetaCooldown == 0 || millis() - targetaCooldown > 2000) &&
+        lector.detect();
+
+    int sortida = botoSortida.read() || action == EXIT;
+    int entrada = botoEntrada.read() || ultrasons.isClose() ||
+                  action == ENTER || ambTargeta;
+
+    int user = 0;
+
+    if (ambTargeta && places > 0) {
+        lcd.update("Passi detectat", "");
+        delay(200);
+
+        int u = lector.read("user");
+
+        if (u < 1) {
+            lcd.update("Error de lectura", "");
+        } else
+            user = u;
+    }
 
     if ((sortida != entrada) && !barrera.isOpen) {
         // Algun botó premut o distància propera
@@ -71,7 +118,7 @@ void loop() {
 
                 ++places;
             } else {
-                lcd.update("Benvinguts", "");
+                lcd.update("Benvingut", user == 0 ? "Anonim" : ("Usuari " + String(user)));
 
                 --places;
             }
@@ -82,8 +129,7 @@ void loop() {
     // | sol per forçar evaluació d'ambdues expressions
     // amb || es curtcircuiten
     if (barrera.checkTime() | lcd.checkTime()) {
-        lcd.update("Benvinguts",
-                   places == 0 ? "Parking ple" : "Places: " + String(places));
+        pantallaIdle();
     }
     delay(50);
 }
