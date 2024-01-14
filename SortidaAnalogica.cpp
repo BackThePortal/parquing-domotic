@@ -13,5 +13,5 @@ void SortidaAnalogica::begin() {
 }
 
 void SortidaAnalogica::set(int value, int min, int max) {
-    this->set(map(constrain(value, min, max), min, max, 0, 1023));
+    this->set(map(constrain(value, min, max), min, max, 1023, 0));
 }

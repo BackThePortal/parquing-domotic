@@ -20,16 +20,28 @@ enum Buttons {
 };
 
 enum Actions {
-    _NULL,  // 0
-    ENTER,  // 1
-    EXIT,   // 2
-
+    _NULL,       // 0
+    ENTER,       // 1
+    EXIT,        // 2
+    USER_ONE,    // 3
+    USER_TWO,    // 4
+    USER_THREE,  // ...
+    USER_FOUR,
+    USER_FIVE,
+    USER_SIX,
+    USER_SEVEN,
+    USER_EIGHT,
+    USER_NINE
 };
 
 struct Pair {
     Buttons code;
     Actions action;
 };
+
+int getUserIndex(Actions &b);
+
+bool isUserAction(Actions &b);
 
 class Comandament {
    protected:
@@ -39,8 +51,6 @@ class Comandament {
     Comandament(int _pin);
     void begin();
     Actions read();
-
-    Pair actions[4] = {{Buttons::UP, ENTER}, {Buttons::DOWN, EXIT}};
 };
 
 #endif

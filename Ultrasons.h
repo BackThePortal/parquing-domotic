@@ -12,6 +12,7 @@ class Ultrasons {
     void begin();
     
     bool isClose();
+    int count;
 
    private:
     SortidaDigital* trig;
@@ -19,7 +20,7 @@ class Ultrasons {
     SortidaAnalogica* blue1;
     SortidaAnalogica* blue2;
 
-    const int lightRanges[3] = {5, 15, 50};
+    const int lightRanges[3] = {3, 25, 50};
 
     int dist();
 
