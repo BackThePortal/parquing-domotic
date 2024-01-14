@@ -144,7 +144,12 @@ void loop() {
             targetaCooldown = millis();
 
         }*/
+    
 
+    // != amb booleans és l'operador XOR; retorna true si
+    // algun dels operands és true, però si els dos ho són,
+    // retorna false. Això és per evitar que ambdues accions
+    // puguin ser executades.
     if ((sortida != entrada) && !barrera.isOpen) {
         // Algun botó premut o distància propera
 
