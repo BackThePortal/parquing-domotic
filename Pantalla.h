@@ -5,22 +5,29 @@
 
 #include <Arduino.h>
 
-/*
-Herència privada perquè tot allò public dins de LiquidCrystal_I2C
-es converteixi en privat i no s'hi pugui accedir.
-*/
-class Pantalla : private LiquidCrystal_I2C {
+class Pantalla : LiquidCrystal_I2C {
    private:
     unsigned long t;
-    unsigned long maxT = 0;
+    unsigned long maxT;
+    unsigned int& places;
 
    public:
-    using LiquidCrystal_I2C::clear;
-    Pantalla();
+    Pantalla(unsigned int& places);
     void begin();
     void update(String upperLine, String lowerLine);
+    /*
+    Mostar un missatge per pantalla amb un temporitzador.
+    */
     void update(String upperLine, String lowerLine, unsigned long t);
-    bool checkTime();
+    /*
+    Mostrar missatge per defecte.
+    */
+    void idle();
+    /*
+    Comprovar temporitzadors i fer tornar la pantalla al missatge
+    per defecte si el temps ha passat,
+    */
+    void checkTime();
 };
 
 #endif
