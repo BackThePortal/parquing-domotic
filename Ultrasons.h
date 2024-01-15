@@ -12,9 +12,9 @@ class Ultrasons {
     void begin();
     
     bool isClose();
-    int count;
 
    private:
+    int count;
     SortidaDigital* trig;
     EntradaDigital* echo;
     SortidaAnalogica* blue1;
